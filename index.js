@@ -1,3 +1,4 @@
+"use strict";
 var morse = require('./morse.js');
 
 var encode = function(str) {
@@ -16,7 +17,12 @@ var printWorse = function(worseString) {
     (function(index) {
       setTimeout(function() {
         process.stdout.write(worseArray[index]);
-      }, 500 * i);
+        // annoying beep if it's a dot
+        if (worseArray[index] === ".") {
+          process.stdout.write("\x07");
+        }
+        // need to find a sound for dash!!
+      }, 200 * i);
     })(i);
   }
 }
